@@ -1,0 +1,19 @@
+/* Empty. Add your own CSS if you like */
+
+.ca-error {
+    color: red !important;
+}
+
+circle {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.center {
+    text-align: center;
+}
+
+/*.ca-load-box {
+    display: none;
+}*/

@@ -1,0 +1,52 @@
+<ion-view view-title="Playlists">
+  <ion-content ng-controller="ProgressCtrl" class="center">
+<!--     <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list> -->
+
+    <h1>Progress</h1>
+
+    <div>
+        {{ (seconds * 2) | number : 0 }}% <br/>
+        {{ (seconds * 2) | number : 0 }}s
+    </div>
+
+    <!-- <progress-arc
+        size="100"
+        stroke="blue"
+        stroke-width="10"
+        complete="seconds"
+        counter-clockwise="false"
+        background="red">
+    </progress-arc> -->
+
+    <div class="ca-load-box">
+        <div
+            round-progress
+            max="max"
+            current="seconds"
+            color="url(#gradient)"
+            bgcolor="#eaeaea"
+            radius="100"
+            stroke="15"
+            semi="false"
+            rounded="true"
+            clockwise="true"
+            responsive="true"
+            duration="800"
+            animation="easeOutCubic"
+            animation-delay="0">
+
+            <svg>
+                <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="5%"  stop-color="lightgreen"/>
+                    <stop offset="95%" stop-color="red"/>
+                </linearGradient>
+            </svg>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>
