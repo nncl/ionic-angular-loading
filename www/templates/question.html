@@ -1,34 +1,39 @@
 <div class="quiz-area" ng-show="inProgress">
         <div ng-show="!quizOver">
-            <h2 id="question">{{question}}</h2>
-            <ul id="options">
-                <li ng-repeat="option in options">
-                    <label>
-                        <input type="radio" name="answer" value="{{option}}">
-                        {{option}}
-                    </label>
-                </li>
-            </ul>
-            <button ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
-
-            <div ng-show="!answerMode">
-                <button ng-click="nextQuestion()" class="next-question">Next</button>
-                <span ng-show="correctAns">That is correct!</span>
-                <span ng-show="!correctAns">Sorry, that is an incorrect answer.</span>
+            <h2 id="question" class="padding">{{question}}</h2>
+            <div class="padding center">
+                <span>Elapsed time: {{time}} </span> <br/>
+                <span>Question time: {{timeQuestion}} </span>
             </div>
+
+            <ion-list>
+              <ion-radio
+                 ng-repeat="option in options"
+                 name="answer"
+                 value="{{option}}">
+                    {{option}}
+                </ion-radio>
+            </ion-list>
+
+            <div class="padding center">
+                <button ng-click="checkAnswer()"
+                class="button button-calm"
+                ng-show="answerMode">Só vai</button>
+            </div>
+
         </div>
 
-        <div ng-show="quizOver">
-            <h2>Quiz is over</h2>
-            <button ng-click="reset()">Play again</button>
-        </div>
-
-        <div id="score">
-            Score: {{score}}
+        <div ng-show="quizOver" class="padding center">
+            <h1>Quiz is over</h1>
+            <h2 ng-if="score >= 4">Congratulations</h2>
+            <h3>You got {{score}} of 5 correct questions.</h3>
+            <h4>Your time was {{time}}</h4>
+            <h4>And you skipped {{elapsedOver}} questions. </h5>
+            <button ng-click="reset()" class="button button-calm">Play again</button>
         </div>
     </div>
 
-    <div class="intro" ng-show="!inProgress">
-        <p>Welcome to the QuizApp</p>
-        <button id="startQuiz" ng-click="start()">Start the Quiz</button>
+    <div class="intro padding center" ng-show="!inProgress">
+        <h1>Welcome to the QuizApp</h1>
+        <button class="button button-calm" ng-click="start()">Start the Quiz</button>
     </div>

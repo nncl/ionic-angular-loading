@@ -17,3 +17,10 @@ circle {
 /*.ca-load-box {
     display: none;
 }*/
+
+.ca-center {
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 0px;
+}

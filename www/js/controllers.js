@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.directive('quiz', function(quizFactory) {
+.directive('quiz', function($interval, quizFactory) {
     return {
         restrict: 'AE',
         scope: {},
@@ -85,12 +85,32 @@ angular.module('starter.controllers', [])
                 scope.id = 0;
                 scope.quizOver = false;
                 scope.inProgress = true;
+                scope.time = 0;
+                scope.elapsedOver = 0;
+                scope.total = $interval(function(){
+                  scope.time++;
+                }, 1000);
+
+                scope.timeQuestion = 0;
+
+                scope.totalQuestion = $interval(function(){
+                  scope.timeQuestion++;
+
+                  if (scope.timeQuestion >= 5) {
+                    scope.elapsedOver++;
+                    scope.nextQuestion();
+                  };
+
+                }, 1000);
+
                 scope.getQuestion();
             };
 
             scope.reset = function() {
                 scope.inProgress = false;
                 scope.score = 0;
+                scope.time = 0;
+                // scope.start();
             }
 
             scope.getQuestion = function() {
@@ -102,6 +122,8 @@ angular.module('starter.controllers', [])
                     scope.answerMode = true;
                 } else {
                     scope.quizOver = true;
+                    $interval.cancel(scope.total);
+                    $interval.cancel(scope.totalQuestion);
                 }
             };
 
@@ -119,10 +141,13 @@ angular.module('starter.controllers', [])
                 }
 
                 scope.answerMode = false;
+
+                scope.nextQuestion();
             };
 
             scope.nextQuestion = function() {
                 scope.id++;
+                scope.timeQuestion = 0;
                 scope.getQuestion();
             }
 
