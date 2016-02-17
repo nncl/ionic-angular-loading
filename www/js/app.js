@@ -63,6 +63,15 @@ angular.module('starter', ['ionic',
       }
     })
 
+    .state('app.question', {
+      url: '/question',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/search.html'
+        }
+      }
+    })
+
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
